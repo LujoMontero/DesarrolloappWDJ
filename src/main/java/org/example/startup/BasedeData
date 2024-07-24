@@ -1,0 +1,84 @@
+-- Usar la base de datos startupdb
+USE startupdb;
+
+-- Crear tabla direcciones
+CREATE TABLE IF NOT EXISTS direcciones (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    numero INT,
+    id_usuario INT,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id)
+);
+
+-- Crear tabla usuarios
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    correo VARCHAR(50),
+    clave VARCHAR(255),
+    nombre VARCHAR(50),
+    apodo VARCHAR(50),
+    peso INT,
+    id_auto INT,
+    fecha_creacion DATETIME,
+    fecha_modificacion DATETIME,
+    FOREIGN KEY (id_auto) REFERENCES autos(id)
+);
+
+-- Crear tabla autos
+CREATE TABLE IF NOT EXISTS autos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    url VARCHAR(256),
+    id_proveedor INT,
+    FOREIGN KEY (id_proveedor) REFERENCES proveedores(id)
+);
+
+-- Crear tabla proveedores
+CREATE TABLE IF NOT EXISTS proveedores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
+-- Crear tabla proveedores2
+CREATE TABLE IF NOT EXISTS proveedores2 (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    rut VARCHAR(11),
+    direccion VARCHAR(100),
+    correo VARCHAR(100),
+    telefono INT,
+    contacto VARCHAR(50),
+    telefono_contacto INT,
+    activo BIT(1)
+);
+
+-- Crear tabla personajes
+CREATE TABLE IF NOT EXISTS personajes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(45),
+    genero VARCHAR(45),
+    fuerza INT,
+    defensa INT,
+    vida INT
+);
+
+-- Crear tabla clientes
+CREATE TABLE IF NOT EXISTS clientes (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50),
+    apellido VARCHAR(50)
+);
+
+-- Crear tabla roles
+CREATE TABLE IF NOT EXISTS roles (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
+-- Crear tabla usuarios_roles
+CREATE TABLE IF NOT EXISTS usuarios_roles (
+    id_usuario INT,
+    id_rol INT,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id),
+    FOREIGN KEY (id_rol) REFERENCES roles(id)
+);
