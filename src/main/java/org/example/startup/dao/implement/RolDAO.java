@@ -1,10 +1,10 @@
 package org.example.startup.dao.implement;
 
-import com.sun.jdi.connect.spi.Connection;
 import org.example.startup.connection.MysqlConnection;
 import org.example.startup.dao.IRolDAO;
 import org.example.startup.entity.RolDTO;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,7 +12,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RolDAO implements IRolDAO {
-    private Connection connection = MysqlConnection.getInstance().getConnection();
+    private Connection connection;
+
+    public RolDAO() {
+        try {
+            this.connection = MysqlConnection.getInstance().getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public List<RolDTO> getAll() {

@@ -1,4 +1,4 @@
-package org.example.startup.servlets;
+package org.example.startup.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,11 +9,8 @@ import jakarta.servlet.http.HttpSession;
 import org.example.startup.entity.UserDTO;
 import org.example.startup.services.IUserService;
 import org.example.startup.services.impl.ServiceResponse;
-
 import org.example.startup.services.impl.UserService;
-
 import java.io.IOException;
-
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {

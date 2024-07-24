@@ -9,5 +9,4 @@ public class RolDTO {
     private int id;
     private String name;
 
-    // Getters y setters
 }

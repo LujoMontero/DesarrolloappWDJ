@@ -1,18 +1,26 @@
 package org.example.startup.dao.implement;
 
-import com.sun.jdi.connect.spi.Connection;
-import jakarta.resource.cci.ResultSet;
 import org.example.startup.connection.MysqlConnection;
 import org.example.startup.dao.ICarDAO;
 import org.example.startup.entity.CarDTO;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarDAO implements ICarDAO {
-    private Connection connection = MysqlConnection.getInstance().getConnection();
+    private Connection connection;
+
+    public CarDAO() {
+        try {
+            this.connection = MysqlConnection.getInstance().getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public List<CarDTO> getAll() {

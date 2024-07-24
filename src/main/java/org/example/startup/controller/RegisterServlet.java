@@ -1,6 +1,5 @@
-package org.example.startup.servlets;
+package org.example.startup.controller;
 
-import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -9,11 +8,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.example.startup.dao.IUserRolService;
 import org.example.startup.dao.implement.UserRolService;
 import org.example.startup.entity.*;
-import org.example.startup.services.IAddressService;
-import org.example.startup.services.ICarService;
-import org.example.startup.services.IRolService;
-import org.example.startup.services.IUserService;
+import org.example.startup.services.*;
 import org.example.startup.services.impl.*;
+
+import java.io.IOException;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -60,7 +58,6 @@ public class RegisterServlet extends HttpServlet {
             userRolDTO.setIdUser(result.getData().getId());
             userRolDTO.setIdRol(rolId);
             userRolService.add(userRolDTO);
-
             response.sendRedirect("login.jsp");
         } else {
             request.setAttribute("errorMessage", result.getMessage());
